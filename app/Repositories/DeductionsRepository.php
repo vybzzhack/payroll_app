@@ -8,10 +8,9 @@ use App\Repositories\BaseRepository;
 class DeductionsRepository extends BaseRepository
 {
     protected $fieldSearchable = [
-        'employee_id',
+        'deduction_name',
         'deduction_type',
-        'amount',
-        'date_applied'
+        'amount'
     ];
 
     public function getFieldsSearchable(): array

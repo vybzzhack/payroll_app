@@ -1,7 +1,7 @@
 [
     {
         "name": "id",
-        "dbType": "integer,true",
+        "dbType": "integer,false",
         "htmlType": "number",
         "validations": "",
         "searchable": false,
@@ -12,10 +12,10 @@
         "inView": false
     },
     {
-        "name": "allowance_type",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": "nullable|string|max:100|nullable|string|max:100",
+        "name": "employee_id",
+        "dbType": "integer,false",
+        "htmlType": "number",
+        "validations": "nullable|nullable",
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -24,7 +24,7 @@
         "inView": true
     },
     {
-        "name": "amount",
+        "name": "allowance_id",
         "dbType": "integer,false",
         "htmlType": "number",
         "validations": "nullable|nullable",
@@ -61,6 +61,10 @@
     },
     {
         "type": "relation",
-        "relation": "1tm,EmployeeAllowance,allowance_id"
+        "relation": "mt1,Employee,employee_id"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Allowance,allowance_id"
     }
 ]

@@ -9,6 +9,7 @@ use App\Models\Payrolls;
 use App\Models\Departments;
 use App\Models\Leaves;
 use App\Models\Attendance;
+use App\Models\Employeerecords;
 
 class HomeController extends Controller
 {
@@ -38,8 +39,13 @@ class HomeController extends Controller
         $attendanceTodayCount = Attendance::whereDate('created_at', now()->toDateString())->count();
 
         $departmentCounts = Departments::withCount('employees')->get();
-        $departmentNames = $departmentCounts->pluck('name'); // Department names
+        $departmentNames = $departmentCounts->pluck('department_name'); // Department names
         $employeeCounts = $departmentCounts->pluck('employees_count'); // Employee counts
+
+        $employeeOfTheMonth = Employeerecords::with('department')
+            ->where('record_type', 'employee of the month')
+            ->latest()
+            ->first();
 
         return view('home', compact(
             'employeeCount', 
@@ -50,7 +56,8 @@ class HomeController extends Controller
             'attendanceTodayCount',
             'departmentCounts',
             'departmentNames',
-            'employeeCounts'
+            'employeeCounts',
+            'employeeOfTheMonth'
         ));
     }
 

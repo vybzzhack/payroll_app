@@ -55,6 +55,13 @@
     </a>
 </li>
 
+<li class="nav-item">
+    <a href="{{ route('employee_allowances.index') }}" class="nav-link {{ Request::is('employeeAllowances*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-home"></i>
+        <p>Employee Allowances</p>
+    </a>
+</li>
+
 
 <li class="nav-item has-treeview {{ Request::is('attendances*') || Request::is('promotions*') || Request::is('employeerecords*') ? 'menu-open' : '' }}">
     <a href="#" class="nav-link {{ Request::is('attendances*') || Request::is('promotions*') || Request::is('employeerecords*') ? 'active' : '' }}">
@@ -111,12 +118,32 @@
     </ul>
 </li>
 
-<li class="nav-item">
-    <a href="{{ route('deductions.index') }}" class="nav-link {{ Request::is('deductions*') ? 'active' : '' }}">
-        <i class="nav-icon fas fa-minus-circle"></i>
-        <p>Deductions</p>
+<li class="nav-item has-treeview {{ Request::is('deductions*') || Request::is('employeeDeductions*') ? 'menu-open' : '' }}">
+    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-file-invoice-dollar"></i> <!-- Updated Icon -->
+        <p>
+            Deduction Management
+            <i class="right fas fa-angle-left"></i>
+        </p>
     </a>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a href="{{ route('deductions.index') }}" class="nav-link {{ Request::is('deductions*') ? 'active' : '' }}">
+                <i class="fas fa-minus-circle nav-icon"></i> <!-- Deductions Icon -->
+                <p>Deductions</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('employee_deductions.index') }}" class="nav-link {{ Request::is('employeeDeductions*') ? 'active' : '' }}">
+                <i class="fas fa-users nav-icon"></i> <!-- Updated Employee Deductions Icon -->
+                <p>Employee Deductions</p>
+            </a>
+        </li>
+    </ul>
 </li>
+
+
+
 
 @auth
     @if (Auth::user()->role === 'admin')
@@ -128,4 +155,5 @@
         </li>
     @endif
 @endauth
+
 

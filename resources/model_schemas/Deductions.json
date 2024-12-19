@@ -12,10 +12,10 @@
         "inView": false
     },
     {
-        "name": "employee_id",
-        "dbType": "integer,false",
-        "htmlType": "number",
-        "validations": "nullable|nullable",
+        "name": "deduction_name",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "nullable|string|max:100|nullable|string|max:100",
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -39,18 +39,6 @@
         "name": "amount",
         "dbType": "integer,false",
         "htmlType": "number",
-        "validations": "nullable|nullable",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "date_applied",
-        "dbType": "date",
-        "htmlType": "date",
         "validations": "nullable|nullable",
         "searchable": true,
         "fillable": true,
@@ -85,6 +73,6 @@
     },
     {
         "type": "relation",
-        "relation": "mt1,Employee,employee_id"
+        "relation": "1tm,EmployeeDeduction,deduction_id"
     }
 ]

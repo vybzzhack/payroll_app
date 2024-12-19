@@ -2,14 +2,14 @@
 
 namespace App\Repositories;
 
-use App\Models\Allowances;
+use App\Models\EmployeeAllowances;
 use App\Repositories\BaseRepository;
 
-class AllowancesRepository extends BaseRepository
+class EmployeeAllowancesRepository extends BaseRepository
 {
     protected $fieldSearchable = [
-        'allowance_type',
-        'amount'
+        'employee_id',
+        'allowance_id'
     ];
 
     public function getFieldsSearchable(): array
@@ -19,6 +19,6 @@ class AllowancesRepository extends BaseRepository
 
     public function model(): string
     {
-        return Allowances::class;
+        return EmployeeAllowances::class;
     }
 }

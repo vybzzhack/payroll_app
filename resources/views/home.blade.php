@@ -6,9 +6,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <script>
-        // const departmentNames = {!! json_encode($departmentCounts->pluck('name')) !!};
-        // const employeeCounts = {!! json_encode($departmentCounts->pluck('employees_count')) !!};
-
+        
         const departmentNames = @json($departmentNames);
         const employeeCounts = @json($employeeCounts);
 
@@ -172,6 +170,31 @@
                 </div>
             </div>
         </div>
+
+        <div class="dashboard-cards">
+            <!-- Employee of the Month Card -->
+            <div class="card employee-card">
+                <h3>Employee of the Month</h3>
+                <div class="employee-details">
+                    <img src="{{ $employeeOfTheMonth->profile_picture ?? 'https://via.placeholder.com/100' }}" 
+                        alt="Profile Picture" 
+                        class="employee-img">
+                    <div>
+                        <p><strong>Name:</strong> {{ $employeeOfTheMonth->name ?? 'N/A' }}</p>
+                        <p><strong>Role:</strong> {{ $employeeOfTheMonth->role ?? 'N/A' }}</p>
+                        <p><strong>Department:</strong> {{ $employeeOfTheMonth->department->name ?? 'N/A' }}</p>
+                    </div>
+                </div>
+                
+            </div>
+
+            <!-- Calendar Card -->
+            <div class="card calendar-card">
+                <h3>Event Calendar</h3>
+                <div id="calendar"></div>
+            </div>
+        </div>
+
 
 
         <div class="card mt-4">

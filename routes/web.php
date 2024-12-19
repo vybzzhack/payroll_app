@@ -39,3 +39,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::resource('users', App\Http\Controllers\UsersController::class);
+Route::resource('employee_deductions', App\Http\Controllers\EmployeeDeductionsController::class);
+Route::resource('employee_allowances', App\Http\Controllers\EmployeeAllowancesController::class);

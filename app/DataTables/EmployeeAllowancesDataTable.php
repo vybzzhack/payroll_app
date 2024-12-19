@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\Deductions;
+use App\Models\EmployeeAllowances;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
-class DeductionsDataTable extends DataTable
+class EmployeeAllowancesDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -18,16 +18,26 @@ class DeductionsDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'deductions.datatables_actions');
+        $dataTable->addColumn('employee_full_name', function (EmployeeAllowances $employeeAllowances) {
+            return $employeeAllowances->employee->full_name ?? 'N/A';
+        });
+
+        $dataTable->addColumn('allowance_id', function (EmployeeAllowances $employeeAllowances) {
+            return $employeeAllowances->allowance->allowance_type ?? 'N/A';
+        });
+
+        $dataTable->addColumn('action', 'employee_allowances.datatables_actions');
+
+        return $dataTable;
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Deductions $model
+     * @param \App\Models\EmployeeAllowances $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Deductions $model)
+    public function query(EmployeeAllowances $model)
     {
         return $model->newQuery();
     }
@@ -66,9 +76,8 @@ class DeductionsDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'deduction_name',
-            'deduction_type',
-            'amount'
+            'employee_full_name',
+            'allowance_id'
         ];
     }
 
@@ -79,6 +88,6 @@ class DeductionsDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'deductions_datatable_' . time();
+        return 'employee_allowances_datatable_' . time();
     }
 }

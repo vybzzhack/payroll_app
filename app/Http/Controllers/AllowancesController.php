@@ -6,7 +6,6 @@ use App\DataTables\AllowancesDataTable;
 use App\Http\Requests\CreateAllowancesRequest;
 use App\Http\Requests\UpdateAllowancesRequest;
 use App\Http\Controllers\AppBaseController;
-use App\Models\Employee;
 use App\Repositories\AllowancesRepository;
 use Illuminate\Http\Request;
 use Flash;
@@ -35,8 +34,7 @@ class AllowancesController extends AppBaseController
      */
     public function create()
     {
-        $employees = Employee::pluck('first_name', 'id');
-        return view('allowances.create', compact('employees'));
+        return view('allowances.create');
     }
 
     /**
@@ -82,13 +80,7 @@ class AllowancesController extends AppBaseController
             return redirect(route('allowances.index'));
         }
 
-        // $departments = Department::pluck('department_name', 'id');
-
-        // return view('employees.edit', compact('employee', 'departments'));
-
-        $employees = Employee::pluck('first_name', 'id');
-        
-        return view('allowances.edit', compact('employees'));
+        return view('allowances.edit')->with('allowances', $allowances);
     }
 
     /**

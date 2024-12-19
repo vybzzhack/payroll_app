@@ -53,4 +53,9 @@ class Employeerecords extends Model
     {
         return Carbon::parse($value)->format('Y-m-d');
     }
+
+    public function department()
+    {
+        return $this->belongsTo(Departments::class);
+    }
 }
